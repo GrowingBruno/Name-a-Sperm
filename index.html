@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name a Sperm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+        }
+        h1 {
+            color: #1e90ff;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 22px);
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            color: white;
+            background: #1e90ff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #007acc;
+        }
+        .leaderboard {
+            margin-top: 20px;
+        }
+        .leaderboard ul {
+            list-style: none;
+            padding: 0;
+        }
+        .leaderboard li {
+            background: #f3f4f6;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Name a Sperm</h1>
+    <div class="container">
+        <p>For just $1, you can name a sperm and help us on our IVF journey!</p>
+        <input type="text" id="spermName" placeholder="Enter your sperm's name">
+        <button onclick="addName()">Submit Name</button>
+        <div class="leaderboard">
+            <h2>Sperm Leaderboard</h2>
+            <ul id="leaderboardList">
+                <!-- Names will appear here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Array to store sperm names
+        const spermNames = [];
+
+        // Function to add a name
+        function addName() {
+            const nameInput = document.getElementById('spermName');
+            const name = nameInput.value.trim();
+
+            if (name) {
+                spermNames.push(name);
+                updateLeaderboard();
+                nameInput.value = '';
+            } else {
+                alert('Please enter a name!');
+            }
+        }
+
+        // Function to update the leaderboard
+        function updateLeaderboard() {
+            const leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = '';
+
+            spermNames.forEach((name, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${name}`;
+                leaderboardList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
